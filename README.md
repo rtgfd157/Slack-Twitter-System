@@ -2,9 +2,9 @@
 ----------------------------------------------
 
 The system capable:
-- insert new tweet to user
-- sending current time to Slack channel content
-- inserting new tweets from latest hour by user
+- insert (twitter account) new tweet of user.
+- sending current time to Slack channel content.
+- inserting new tweets from latest hour by user.
 - insert new(from latest hour) tweets to 4 built in channels('PythonWeekly', 'realpython' 'fullstackpython','tttbayex') by command, and every hour system is up.  
 
 
@@ -12,8 +12,22 @@ The system use Slack api, and tweepy library.
 Both will need tokens and configurations in Slack,Twitter - dev sites.   
 
 
-### slack   api without third party packages
----------------------------------------------
+### system Init commands:  
+making dependecies text for reproduction of enviorment  
+```bash
+pip3 freeze > requirements.txt
+```
+
+activating virtual enviorment(after installing) check before if pip(windows) or pip3(linux):  
+```bash
+pip3 install -r requirements.txt
+```
+```bash
+source venv/bin/activate
+```
+
+### Sys Commands operation's:
+---------------------
 
 - run the server
 ```python
@@ -63,19 +77,7 @@ libraries:
 - python-dotenv
 - tweepy
 
-### commands:  
-making dependecies text for reproduction of enviorment  
-```bash
-pip3 freeze > requirements.txt
-```
 
-activating virtual enviorment(after installing) check before if pip(windows) or pip3(linux):  
-```bash
-pip3 install -r requirements.txt
-```
-```bash
-source venv/bin/activate
-```
 
 ### program will act and update slack by username in twitter in last hour:
 
