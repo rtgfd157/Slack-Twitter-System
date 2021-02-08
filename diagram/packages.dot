@@ -1,0 +1,14 @@
+digraph "packages" {
+charset="utf-8"
+rankdir=BT
+"0" [label="slack_communicator", shape="box"];
+"1" [label="sockets.client_skeleton", shape="box"];
+"2" [label="sockets.server_socket", shape="box"];
+"3" [label="start_program", shape="box"];
+"4" [label="twitter_communicator", shape="box"];
+"2" -> "0" [arrowhead="open", arrowtail="none"];
+"2" -> "4" [arrowhead="open", arrowtail="none"];
+"3" -> "0" [arrowhead="open", arrowtail="none"];
+"3" -> "2" [arrowhead="open", arrowtail="none"];
+"4" -> "0" [arrowhead="open", arrowtail="none"];
+}

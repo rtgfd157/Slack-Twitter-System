@@ -1,16 +1,93 @@
+# System for updating Slack/twitter services:
+----------------------------------------------
+
+The system capable:
+- insert new tweet to user
+- sending current time to Slack channel content
+- inserting new tweets from latest hour by user
+- insert new(from latest hour) tweets to 4 built in channels('PythonWeekly', 'realpython' 'fullstackpython','tttbayex') by command, and every hour system is up.  
+
+
+The system use Slack api, and tweepy library.  
+Both will need tokens and configurations in Slack,Twitter - dev sites.   
 
 
 ### slack   api without third party packages
 ---------------------------------------------
 
-https://keestalkstech.com/2019/10/simple-python-code-to-send-message-to-slack-channel-without-packages/
-https://www.youtube.com/watch?v=lEQ68HhpO4g
+- run the server
+```python
+python3 start_program.py 
+```
 
-https://www.youtube.com/watch?v=KJ5bFv-IRFM
+
+- run the client
+update slack by scaning twitter  'PythonWeekly', 'realpython' 'fullstackpython','tttbayex'   
+tweets and insert new tweets from the latest hour, (will be insert if not exsist in latest 500 slack channel).
+```python
+python3 client_skeleton.py new-content
+```
+
+send slack content channel with current time message
+```python
+python3 client_skeleton.py now
+```
+
+send message string to slack channel  
+```python
+python3 client_skeleton.py tweet <message string>
+```
+
+update channel content with @username from latest hour, (will be insert if not exsist in latest 500 slack channel).    
+```python
+python3 client_skeleton.py new-content  username
+```
+
+terminate server run    
+```python
+python3 client_skeleton.py s
+```
 
 
-commands:
-pip3 freeze > requirements.txt
+### Learning links:
+https://www.tweepy.org/  
+https://keestalkstech.com/2019/10/simple-python-code-to-send-message-to-slack-channel-without-packages/  
+https://www.youtube.com/watch?v=lEQ68HhpO4g  
+https://www.youtube.com/watch?v=KJ5bFv-IRFM  
+
+
+
 
 libraries:
-python-dotenv
+- requests
+- python-dotenv
+- tweepy
+
+### commands:  
+making dependecies text for reproduction of enviorment  
+```bash
+pip3 freeze > requirements.txt
+```
+
+activating virtual enviorment(after installing) check before if pip(windows) or pip3(linux):  
+```bash
+pip3 install -r requirements.txt
+```
+```bash
+source venv/bin/activate
+```
+
+### program will act and update slack by username in twitter in last hour:
+
+userID_list = ["PythonWeekly",'realpython', 'fullstackpython','tttbayex']
+
+~~userID_list = ["Python Weekly",'Real Python', 'Full Stack Python','tttbayex']~~
+
+## System Diagram:
+-------------------
+
+![UML](./diagram/myUML.png)  
+
+
+Made by Idan 
+------------

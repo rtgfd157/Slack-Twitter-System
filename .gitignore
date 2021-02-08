@@ -1,10 +1,11 @@
-.vscode
-
-
+.vscode/settings.json
+sockets/__init__.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+sockets/__pycache__/
 
 # C extensions
 *.so
