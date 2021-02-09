@@ -60,8 +60,8 @@ async def socket_controller():
     server_socket = setup_socket()
     client_sockets = []
     loop = asyncio.get_event_loop()
-    out =False
-    while True and out == False:
+    
+    while True:
         await asyncio.sleep(1)
         #await loop.run_in_executor()
         ready_to_read, ready_to_write, in_error =  select.select(
@@ -75,26 +75,27 @@ async def socket_controller():
                 print("New data from client ",str(current_socket))
                 data = recieve_message(current_socket)
                 
-                print(data)
                 client_sockets.remove(current_socket)
                 current_socket.close()
-                if data['command'] == 's':
-                    #server_socket.remove(current_socket)
-                    server_socket.close()
-                    out = True
-                    os._exit(1)
-                elif data['command'] == 'now':
-                    now = datetime.now()
-                    current_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-                    slack_communicator.post_message_to_slack(current_time)
-                elif data['command'] == 'new-content' and data['username'] == 'null':
-                    print("-----")
-                    twitter_communicator.check_users_new_tweets()
-                elif data['command'] == 'tweet':
-                    message = data['message']
-                    twitter_communicator.make_tweet(message)
-                elif data['command'] == 'new-content':
-                    username = data['username']
-                    twitter_communicator.get_last_hour_user_tweet(username)
-                
-                
+                await operate_command(data)
+                                
+async def operate_command(data):
+    print(data)
+    
+    if data['command'] == 's':
+        #server_socket.remove(current_socket)
+        #server_socket.close()
+        os._exit(1)
+    elif data['command'] == 'now':
+        now = datetime.now()
+        current_time = now.strftime("%m/%d/%Y, %H:%M:%S")
+        slack_communicator.post_message_to_slack(current_time)
+    elif data['command'] == 'new-content' and data['username'] == 'null':
+        twitter_communicator.check_users_new_tweets()
+    elif data['command'] == 'tweet':
+        message = data['message']
+        twitter_communicator.make_tweet(message)
+    elif data['command'] == 'new-content':
+        username = data['username']
+        twitter_communicator.get_last_hour_user_tweet(username)
+               

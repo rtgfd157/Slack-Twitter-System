@@ -5,7 +5,7 @@ import asyncio
 import random
 import threading 
 from  sockets.server_socket import socket_controller as sc
-import slack_communicator
+from  sockets.server_socket import operate_command 
 from datetime import datetime
 
 
@@ -23,9 +23,10 @@ async def main( ):
 async def update_time_every_sleep_awake():
     while True:
         await asyncio.sleep(3600)
-        now = datetime.now()
-        current_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-        slack_communicator.post_message_to_slack(current_time)
+
+
+        data =  {'command': 'now'}
+        operate_command(data)
 
 
 if __name__ == "__main__":
