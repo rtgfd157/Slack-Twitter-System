@@ -26,7 +26,7 @@ async def update_time_every_sleep_awake():
 
 
         data =  {'command': 'now'}
-        operate_command(data)
+        await operate_command(data)
 
 
 if __name__ == "__main__":
