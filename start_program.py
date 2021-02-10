@@ -13,7 +13,7 @@ async def main( ):
     """
     2 methods
     1 - will be our server socket
-    2 - will update time every 1 hour
+    2 - will call method with data that will be parse to now time send to content channel in slack
     """
     await asyncio.gather(
         sc(),
@@ -23,8 +23,6 @@ async def main( ):
 async def update_time_every_sleep_awake():
     while True:
         await asyncio.sleep(3600)
-
-
         data =  {'command': 'now'}
         await operate_command(data)
 

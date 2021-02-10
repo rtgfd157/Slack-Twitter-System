@@ -10,14 +10,6 @@ import twitter_communicator
 from datetime import datetime
 logging.basicConfig(level=logging.INFO)
 
-
-
-# GLOBALS
-users = {}
-questions = {}
-logged_users = {}  # a dictionary of client hostnames to usernames - will be used later
-
-ERROR_MSG = "Error! "
 SERVER_PORT = 5679
 SERVER_IP = "127.0.0.1"
 
@@ -31,7 +23,7 @@ def recieve_message(conn):
 
 def send_message(conn, message):
     data_string = pickle.dumps(message)
-    logging.info(" server message send: ",data_string)
+    #logging.info(" server message send: ",data_string)
     conn.send(data_string)
 
 
@@ -53,17 +45,12 @@ def setup_socket():
 
 
 async def socket_controller():
-    # Initializes global users and questions dicionaries using load functions, will be used later
-    global users
-    global questions
-    
     server_socket = setup_socket()
     client_sockets = []
     loop = asyncio.get_event_loop()
     
     while True:
         await asyncio.sleep(1)
-        #await loop.run_in_executor()
         ready_to_read, ready_to_write, in_error =  select.select(
             [server_socket] + client_sockets, [], [], 0.1)
         for current_socket in ready_to_read:
