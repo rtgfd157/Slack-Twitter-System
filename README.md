@@ -26,6 +26,28 @@ pip3 install -r requirements.txt
 source venv/bin/activate
 ```
 
+### prerequisitions:
+open twitter and slack dev user and get credential for api and use the credential in .env file for intearacting with their services.
+
+https://pypi.org/project/python-dotenv/  
+need to have .env file  :
+
+ACCESS_TOKEN = 'something...'
+will be use like:  
+os.environ['something...']  
+
+in current project in twitter_communicator.py file will use:  
+os.environ['ACCESS_TOKEN']  
+os.environ['ACCESS_TOKEN_SECRET']  
+os.environ['CONSUMER_KEY']  
+so prepare corrosponding vars in .env
+
+and in slack_communicator.py :    
+os.environ['SLACK_TOKEN']  
+os.environ['CONTENT_CHANNEL_TOKEN']  
+
+ 
+
 ### Sys Commands operation's:
 ---------------------
 
